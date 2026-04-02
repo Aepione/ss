@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Sweetgirl Ianne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .intro-screen.fade-out {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .intro-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            padding: 0 2rem;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .proceed-btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 500;
+            color: #764ba2;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proceed-btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(118, 75, 162, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .proceed-btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .proceed-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .proceed-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            display: none;
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-content.active {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #764ba2;
+            opacity: 0.9;
+        }
+
+        .divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #764ba2, transparent);
+            margin: 2rem auto;
+        }
+
+        .letter-content {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 2rem;
+        }
+
+        .letter-content p {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInText 0.8s ease forwards;
+        }
+
+        .letter-content p:nth-child(1) { animation-delay: 0.1s; }
+        .letter-content p:nth-child(2) { animation-delay: 0.2s; }
+        .letter-content p:nth-child(3) { animation-delay: 0.3s; }
+        .letter-content p:nth-child(4) { animation-delay: 0.4s; }
+        .letter-content p:nth-child(5) { animation-delay: 0.5s; }
+        .letter-content p:nth-child(6) { animation-delay: 0.6s; }
+        .letter-content p:nth-child(7) { animation-delay: 0.7s; }
+        .letter-content p:nth-child(8) { animation-delay: 0.8s; }
+        .letter-content p:nth-child(9) { animation-delay: 0.9s; }
+        .letter-content p:nth-child(10) { animation-delay: 1s; }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlight {
+            color: #764ba2;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #764ba2;
+            margin-top: 3rem;
+            animation: fadeInText 0.8s ease 1.1s forwards;
+            opacity: 0;
+        }
+
+        .question-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            text-align: center;
+            animation: fadeInText 0.8s ease 1.2s forwards;
+            opacity: 0;
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #764ba2;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
+            position: relative;
+        }
+
+        .answer-btn {
+            padding: 1rem 3rem;
+            font-size: 1.3rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .no-btn {
+            background: #e0e0e0;
+            color: #666;
+            position: absolute;
+            transition: all 0.2s ease;
+        }
+
+        .response-message {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .response-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .response-message p {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.2rem;
+            color: #764ba2;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .question-text {
+                font-size: 1.4rem;
+            }
+            
+            .answer-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: floatHeart 6s infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .intro-text {
+                font-size: 2.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .letter-content {
+                font-size: 1.05rem;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="stars" id="stars"></div>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-text">Haii my sweetgirl Ianne</div>
+        <button class="proceed-btn" id="proceedBtn">
+            <span>Continue ✨</span>
+        </button>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <div class="header">
+                <h1>Happy Birthday Ianne!</h1>
+                <div class="subtitle">To someone who still means the world to me</div>
+            </div>
+            
+            <div class="divider"></div>
+
+            <div class="letter-content">
+                <p>Hey Ianne, happy birthday. I've been sitting here trying to figure out how to say everything that's on my mind, and honestly, it's harder than I thought it would be. Today's your special day, and I couldn't let it pass without reaching out. I know we're not together anymore, and maybe you've moved on, but I needed you to know that you're still the first person I think about when I wake up and the last one on my mind before I fall asleep.</p>
+
+                <p>I miss you, Ianne. God, I miss you so much. I miss your laugh, the way it would echo in my head long after we'd hang up the phone. I miss your smile and how it could make the worst days feel bearable. I miss the way you'd text me random things throughout the day just because you thought of me. I miss us, the way we used to be, when everything felt right and the world made sense because I had you.</p>
+
+                <p>I know how things get heavier without me. I know that feeling when you have something on your mind, something bothering you, and there's no one to talk to about it. I know because I feel it too. You used to be the person I'd run to with everything, and I was yours. Now when things get tough, when life gets overwhelming, I think about how you're dealing with it all alone. That kills me, Ianne. Knowing that you might be struggling and I'm not there to listen, to help carry that weight with you.</p>
+
+                <p>Do you remember our late night conversations? The ones where we'd talk about everything and nothing until 3am, and neither of us wanted to hang up first? I'd give anything to have just one more of those nights. I'd give anything to hear your voice telling me about your day, complaining about the little things, laughing at stupid videos we'd send each other. Those moments felt so ordinary back then, but now they're all I can think about.</p>
+
+                <p>I think about you constantly. When I'm eating at a place we used to go to together, when I hear a song that reminds me of you, when I see something funny and my first instinct is still to send it to you. It's like you're everywhere and nowhere at the same time. You left this mark on my life that I can't erase, and honestly, I don't think I want to. Even if it hurts, even if missing you feels like there's a piece of me that's permanently gone.</p>
+
+                <p>I know I messed up, Ianne. I know I wasn't always the person you needed me to be. I took you for granted sometimes, didn't appreciate the little things you did, and let my pride get in the way when I should have just listened to you. If I could go back, I'd do so many things differently. I'd hold you tighter, love you better, show you every single day how much you meant to me.</p>
+
+                <p>But I can't go back, and that kills me. What I can do is tell you the truth right now, today, on your birthday. I want you back, Ianne. I want us back. I want another chance to be the person you deserve, to build something even stronger than what we had before. I've spent all this time apart thinking about what went wrong, working on myself, trying to become better, and all of it has made me realize one thing. You're it for me. You're the one I want.</p>
+
+                <p>I'm not saying it would be easy or that we wouldn't have to work through things. I'm not pretending like we can just pick up where we left off and everything will be perfect. But I am saying that I'm willing to try. I'm willing to put in the effort, to have the hard conversations, to fight for us in ways I didn't before. Because losing you taught me that nothing worth having comes without effort, and you're worth everything to me.</p>
+
+                <p>You made me a better person, Ianne. You challenged me, pushed me to grow, showed me parts of myself I didn't even know existed. With you, I felt like I could be completely myself, no masks, no pretending. That kind of connection doesn't come around often, and I was stupid to let it slip away. I was stupid to let you slip away.</p>
+
+                <p>I know you might be happy now, or maybe you're still healing like I am. I know you might have moved on or found someone new. And if that's the case, if you're truly happy without me, then I'll respect that. I'll step back and let you live your life. But if there's even a small part of you that misses what we had, that wonders what could have been if we gave it another shot, then I'm here. I'm ready. I'm all in.</p>
+
+                <p>Every day without you feels incomplete. I wake up and reach for my phone hoping to see a message from you. I go about my day and think about all the things I want to tell you. I see couples together and remember what it felt like to hold your hand, to have you next to me, to know that I was yours and you were mine. Nothing has felt right since we ended, and I don't think anything will until I have you back in my life.</p>
+
+                <p>I'm not trying to guilt you or manipulate you into coming back. That's not what this is about. I just need you to know how I feel because I can't keep it inside anymore. Pretending like I'm okay without you, acting like I've moved on when I haven't, it's exhausting. The truth is simpler than that. I love you. I still love you. I never stopped loving you, and I don't think I ever will.</p>
+
+                <p>You deserve the world, Ianne. You deserve someone who wakes up every morning grateful that you exist, someone who sees all your quirks and flaws and loves you even more because of them, someone who chooses you over and over again no matter what. I want to be that person. I know I wasn't always that person before, but I want the chance to prove that I can be now.</p>
+
+                <p>I think about the future sometimes, about what it could look like if we tried again. I think about lazy Sunday mornings and inside jokes and building a life together. I think about being there for you on your bad days and celebrating with you on your best ones. I think about growing old with you, about all the memories we haven't made yet but could if you'd just give me another chance.</p>
+
+                <p>Maybe I'm being foolish. Maybe I'm setting myself up to get hurt again. Maybe you're reading this and thinking I'm crazy for still holding on when I should have let go a long time ago. But I'd rather be honest and vulnerable with you than spend the rest of my life wondering what if. What if I had told you how I really felt? What if I had fought harder for us? What if I had just been brave enough to say that I want you back?</p>
+
+                <p>So here I am, being brave. Here I am, laying it all out on the table on your birthday because if I don't do it now, I might never do it. I miss you. I love you. I want you back. I want us to try again. I want to prove to you that we're worth fighting for, that what we had was real and special and worth saving.</p>
+
+                <p>You don't have to answer me right away. You don't have to answer me at all if you don't want to. I know this is a lot, and it's your birthday, and you probably weren't expecting any of this. But I needed you to know. I needed you to know that you're not just some ex to me, not just a chapter in my past. You're the person I want in my present and my future. You're the one I can't seem to let go of, no matter how hard I try.</p>
+
+                <p>Whatever you decide, I want you to have the most amazing birthday. I want you to feel loved and celebrated and appreciated, because you deserve all of that and more. I want you to know that you made my life infinitely better just by being in it, and I'll always be grateful for the time we had together, even if that's all we ever get.</p>
+
+                <p>But I'm hoping, really hoping, that it's not all we get. I'm hoping that maybe, just maybe, you feel even a fraction of what I feel. That you miss me too. That you think about me sometimes. That somewhere deep down, you still love me the way I love you. Because if you do, then maybe we have a chance. Maybe we can find our way back to each other.</p>
+
+                <p>I know actions speak louder than words, and I've given you a lot of words here. If you give me the chance, I'll show you through my actions that I mean every single thing I've said. I'll be patient, I'll be understanding, I'll be the partner you needed me to be all along. I'll love you the way you deserve to be loved, with my whole heart, no holding back.</p>
+
+                <p>Happy birthday, Ianne. I hope it's filled with joy and laughter and all your favorite things. I hope you're surrounded by people who love you and make you feel special. And I hope that when you blow out your candles, maybe, just maybe, you'll wish for the same thing I'm wishing for. Us. Together. One more time. Because I'm not ready to give up on us, on you, on what we could still be.</p>
+
+                <p>I'll be here, waiting, hoping, loving you from afar until the day you decide what you want. And whatever you choose, I'll respect it. But please know that my door is always open, my heart is still yours, and I would take you back in a heartbeat if you'd let me. You're my sweetgirl, Ianne. You always have been, and you always will be. Happy birthday, beautiful. I miss you more than words can say. 🎉💜✨</p>
+
+                <div class="signature">Forever yours,<br>The one who still loves you</div>
+
+                <div class="question-section">
+                    <div class="question-text">
+                        If I ever asked you to go with me again,<br>would you run and come back to me again?
+                    </div>
+                    <div class="buttons-container" id="buttonsContainer">
+                        <button class="answer-btn yes-btn" id="yesBtn">Yes</button>
+                        <button class="answer-btn no-btn" id="noBtn">No</button>
+                    </div>
+                    <div class="response-message" id="responseMessage">
+                        <p>Are you really fr?
+<br>Please send screenshot to me </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💜';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 7000);
+        }
+
+        setInterval(createHeart, 800);
+
+        // Play music immediately when page loads
+        window.addEventListener('load', function() {
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.play().catch(error => console.log('Music autoplay prevented:', error));
+        });
+
+        // Proceed button
+        document.getElementById('proceedBtn').addEventListener('click', function() {
+            const introScreen = document.getElementById('introScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            introScreen.classList.add('fade-out');
+            
+            setTimeout(() => {
+                introScreen.style.display = 'none';
+                mainContent.classList.add('active');
+            }, 800);
+        });
+
+        // Yes/No buttons functionality
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const responseMessage = document.getElementById('responseMessage');
+        const buttonsContainer = document.getElementById('buttonsContainer');
+
+        // Make No button run away on hover
+        noBtn.addEventListener('mouseenter', function() {
+            moveNoButton();
+        });
+
+        // Make No button run away on click attempt
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        // For mobile - make No button run away on touch
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        function moveNoButton() {
+            const container = buttonsContainer.getBoundingClientRect();
+            const button = noBtn.getBoundingClientRect();
+            
+            // Calculate random position within container
+            const maxX = container.width - button.width - 100;
+            const maxY = 100;
+            
+            const randomX = Math.random() * maxX - (maxX / 2);
+            const randomY = (Math.random() * maxY) - 50;
+            
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Yes button shows the message
+        yesBtn.addEventListener('click', function() {
+            responseMessage.classList.add('show');
+            noBtn.style.display = 'none';
+            yesBtn.style.margin = '0 auto';
+        });
+    </script>
+</body>
+</html>
